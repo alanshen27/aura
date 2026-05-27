@@ -1,33 +1,35 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, interest, consent, source, createdAt } = body;
+    const { email, interest, consent, source } = body;
 
     if (!email || typeof email !== "string") {
-      return NextResponse.json(
-        { error: "Email is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const lead = {
-      email,
-      interest: interest || null,
-      consent: consent ?? false,
-      source: source || "unknown",
-      createdAt: createdAt || new Date().toISOString(),
-    };
+    const lead = await prisma.newsletterLead.upsert({
+      where: { email },
+      update: {
+        interest: interest || null,
+        consent: consent ?? false,
+        source: source || "unknown",
+      },
+      create: {
+        email,
+        interest: interest || null,
+        consent: consent ?? false,
+        source: source || "unknown",
+      },
+    });
 
-    // MVP: log to console. Replace with email provider (Resend, Mailchimp, etc.) for production.
-    console.log("[newsletter] New subscriber:", JSON.stringify(lead, null, 2));
+    console.log("[newsletter] Subscriber:", lead.id, lead.email);
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json(
-      { error: "Invalid request" },
-      { status: 400 }
-    );
+  } catch (err) {
+    console.error("[newsletter] Error:", err);
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 }
