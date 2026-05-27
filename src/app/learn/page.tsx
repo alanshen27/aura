@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { tracks } from "@/content/tracks";
 import { getModulesByTrack } from "@/content/modules";
+import { DNAHelix, Flask, PetriDish } from "@/components/illustrations";
 
 export const metadata: Metadata = {
   title: "Learn",
@@ -12,11 +13,20 @@ export const metadata: Metadata = {
 export default function LearnPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 pb-20 pt-12">
-      <h1 className="mb-3 text-xl tracking-tight text-foreground">Learn</h1>
-      <p className="mb-10 text-sm text-foreground/70">
-        Pick a track and start learning. Each module is short, clear, and
-        designed to stand on its own.
-      </p>
+      <div className="mb-10 flex items-start justify-between">
+        <div>
+          <h1 className="mb-3 text-xl tracking-tight text-foreground">Learn</h1>
+          <p className="max-w-md text-sm text-foreground/70">
+            Pick a track and start learning. Each module is short, clear, and
+            designed to stand on its own.
+          </p>
+        </div>
+        <div className="hidden items-center gap-2 opacity-50 sm:flex">
+          <DNAHelix size={56} />
+          <Flask size={56} />
+          <PetriDish size={56} />
+        </div>
+      </div>
 
       <div className="space-y-4">
         {tracks.map((track) => {
@@ -27,12 +37,12 @@ export default function LearnPage() {
             <Link
               key={track.slug}
               href={`/learn/${track.slug}`}
-              className="group block rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/40 hover:shadow-sm"
+              className="group block rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/40 hover:-translate-y-0.5 hover:shadow-sm"
             >
               <div className="flex items-start justify-between">
                 <div>
                   <div className="mb-2 flex items-center gap-3">
-                    <div className="grid h-8 w-8 grid-cols-2 gap-0.5 rounded">
+                    <div className="grid h-8 w-8 grid-cols-2 gap-0.5 rounded transition-transform group-hover:scale-110">
                       <div className="rounded-sm bg-charcoal" />
                       <div className="rounded-sm bg-charcoal" />
                       <div className="rounded-sm bg-charcoal" />
@@ -59,7 +69,7 @@ export default function LearnPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="mt-1 shrink-0 text-muted transition-colors group-hover:text-accent"
+                  className="mt-1 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent"
                   aria-hidden="true"
                 >
                   <polyline points="9 18 15 12 9 6" />

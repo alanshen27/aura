@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getModulesByTrack } from "@/content/modules";
 import ModuleCard from "@/components/ModuleCard";
+import { Cell, Plasmid, Protein } from "@/components/illustrations";
 
 export const metadata: Metadata = {
   title: "Beginner Track",
@@ -20,13 +21,22 @@ export default function BeginnerPage() {
         <span aria-hidden="true">/</span>
       </div>
 
-      <h1 className="mb-3 text-2xl tracking-tight text-foreground">
-        Beginner Track
-      </h1>
-      <p className="mb-10 text-base text-foreground/70">
-        10 modules covering the foundations of synthetic biology. No background
-        needed — just curiosity and a few minutes.
-      </p>
+      <div className="mb-10 flex items-start justify-between">
+        <div>
+          <h1 className="mb-3 text-2xl tracking-tight text-foreground">
+            Beginner Track
+          </h1>
+          <p className="max-w-md text-base text-foreground/70">
+            10 modules covering the foundations of synthetic biology. No
+            background needed — just curiosity and a few minutes.
+          </p>
+        </div>
+        <div className="hidden items-center gap-1 opacity-40 sm:flex">
+          <Cell size={52} />
+          <Plasmid size={52} />
+          <Protein size={52} />
+        </div>
+      </div>
 
       <div className="space-y-4">
         {trackModules.map((mod, i) => (

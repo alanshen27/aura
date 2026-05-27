@@ -7,6 +7,7 @@ import ModuleMeta from "@/components/ModuleMeta";
 import ModuleSection from "@/components/ModuleSection";
 import KeyTerms from "@/components/KeyTerms";
 import Quiz from "@/components/Quiz";
+import ModuleIllustration from "@/components/illustrations/ModuleIllustration";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -71,11 +72,27 @@ export default async function ModulePage({ params }: PageProps) {
           <span aria-hidden="true">/</span>
         </div>
 
-        <h1 className="mb-4 text-2xl tracking-tight text-foreground sm:text-3xl">
-          {mod.title}
-        </h1>
+        {/* Module header with illustration */}
+        <div className="mb-4 flex items-start justify-between gap-4">
+          <h1 className="text-2xl tracking-tight text-foreground sm:text-3xl">
+            {mod.title}
+          </h1>
+          <ModuleIllustration slug={slug} size={72} className="shrink-0 opacity-50" />
+        </div>
 
         <ModuleMeta level={mod.level} minutes={mod.minutes} />
+
+        {/* Decorative section divider */}
+        <div className="mb-10 flex items-center gap-3 opacity-20">
+          <div className="h-px flex-1 bg-charcoal" />
+          <div className="grid h-4 w-4 grid-cols-2 gap-0.5">
+            <div className="rounded-sm bg-charcoal" />
+            <div className="rounded-sm bg-charcoal" />
+            <div className="rounded-sm bg-charcoal" />
+            <div className="rounded-sm bg-accent" />
+          </div>
+          <div className="h-px flex-1 bg-charcoal" />
+        </div>
 
         {mod.sections.map((section, i) => (
           <ModuleSection key={i} heading={section.heading} body={section.body} />
@@ -89,7 +106,7 @@ export default async function ModulePage({ params }: PageProps) {
           {prev ? (
             <Link
               href={`/learn/beginner/${prev.slug}`}
-              className="group flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent"
+              className="group flex items-center gap-2 text-sm text-muted transition-all hover:text-accent hover:gap-3"
             >
               <svg
                 width="16"
@@ -101,6 +118,7 @@ export default async function ModulePage({ params }: PageProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
+                className="transition-transform group-hover:-translate-x-0.5"
               >
                 <polyline points="15 18 9 12 15 6" />
               </svg>
@@ -112,7 +130,7 @@ export default async function ModulePage({ params }: PageProps) {
           {next ? (
             <Link
               href={`/learn/beginner/${next.slug}`}
-              className="group flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent"
+              className="group flex items-center gap-2 text-sm text-muted transition-all hover:text-accent hover:gap-3"
             >
               {next.title}
               <svg
@@ -125,6 +143,7 @@ export default async function ModulePage({ params }: PageProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
+                className="transition-transform group-hover:translate-x-0.5"
               >
                 <polyline points="9 18 15 12 9 6" />
               </svg>
