@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { tracks } from "@/content/tracks";
 import { getModulesByTrack, modules } from "@/content/modules";
-import { DNAHelix, Flask, PetriDish } from "@/components/illustrations";
+import { DNAHelix, Flask, PetriDish, Cell, Plasmid } from "@/components/illustrations";
 import Newsletter from "@/components/Newsletter";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Learn",
@@ -19,231 +20,228 @@ export default function LearnPage() {
   ).filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-20 pt-12">
-      {/* Header with illustrations */}
-      <div className="mb-12 flex items-start justify-between">
-        <div>
-          <h1 className="mb-3 text-2xl tracking-tight text-foreground">Learn</h1>
-          <p className="max-w-md text-sm text-foreground/70">
-            Pick a track and start learning. Each module is short, clear, and
-            designed to stand on its own.
-          </p>
+    <div>
+      {/* ─── Hero ─── */}
+      <section className="relative overflow-hidden bg-charcoal py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="mb-2 text-sm text-accent animate-fade-in">the learning hub</p>
+              <h1 className="mb-3 text-3xl tracking-tight text-white sm:text-4xl animate-fade-in-up">
+                pick a track.
+                <br />
+                start learning.
+              </h1>
+              <p className="max-w-md text-sm text-white/50 animate-fade-in-up stagger-2">
+                each module is short, clear, and stands on its own.
+                no exams. no pressure. just cool science.
+              </p>
+            </div>
+            <div className="hidden items-end gap-2 opacity-50 sm:flex">
+              <DNAHelix size={56} className="animate-fade-in stagger-2" />
+              <Flask size={56} className="animate-fade-in stagger-3" />
+              <PetriDish size={56} className="animate-fade-in stagger-4" />
+            </div>
+          </div>
         </div>
-        <div className="hidden items-center gap-2 opacity-50 sm:flex">
-          <DNAHelix size={56} />
-          <Flask size={56} />
-          <PetriDish size={56} />
-        </div>
-      </div>
+      </section>
 
-      {/* Section 1: Pick your track */}
-      <section className="mb-14">
-        <h2 className="mb-5 text-xs uppercase tracking-wider text-muted">
-          Pick your track
-        </h2>
+      <div className="mx-auto max-w-3xl px-6 py-12">
+        {/* ─── Section 1: Pick your track ─── */}
+        <ScrollReveal>
+          <section className="mb-16">
+            <p className="mb-6 text-sm uppercase tracking-widest text-accent">
+              pick your track
+            </p>
 
-        <div className="space-y-4">
-          {tracks.map((track) => {
-            const trackModules = getModulesByTrack(track.slug);
-            const available = trackModules.filter((m) => !m.comingSoon).length;
-            const isComingSoon = track.comingSoon;
+            <div className="space-y-4">
+              {tracks.map((track) => {
+                const trackModules = getModulesByTrack(track.slug);
+                const available = trackModules.filter((m) => !m.comingSoon).length;
+                const isComingSoon = track.comingSoon;
 
-            if (isComingSoon) {
-              return (
-                <div
-                  key={track.slug}
-                  className="rounded-xl border border-border bg-surface p-6 opacity-50"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="grid h-8 w-8 grid-cols-2 gap-0.5 rounded">
-                      <div className="rounded-sm bg-surface-alt" />
-                      <div className="rounded-sm bg-surface-alt" />
-                      <div className="rounded-sm bg-surface-alt" />
-                      <div className="rounded-sm bg-surface-alt" />
-                    </div>
-                    <h3 className="text-base text-foreground">{track.title}</h3>
-                    <span className="rounded bg-surface-alt px-2 py-0.5 text-xs text-muted">
-                      Coming soon
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm text-foreground/50">
-                    {track.description}
-                  </p>
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={track.slug}
-                href={`/learn/${track.slug}`}
-                className="group block rounded-xl border-2 border-accent/30 bg-surface p-6 transition-all duration-200 hover:border-accent/60 hover:-translate-y-0.5 hover:shadow-sm"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="mb-2 flex items-center gap-3">
-                      <div className="grid h-8 w-8 grid-cols-2 gap-0.5 rounded transition-transform group-hover:scale-110">
-                        <div className="rounded-sm bg-charcoal" />
-                        <div className="rounded-sm bg-charcoal" />
-                        <div className="rounded-sm bg-charcoal" />
-                        <div className="rounded-sm bg-accent" />
+                if (isComingSoon) {
+                  return (
+                    <div
+                      key={track.slug}
+                      className="rounded-2xl border border-border bg-surface/50 p-6 opacity-50"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-alt text-lg">
+                          {track.icon}
+                        </span>
+                        <div>
+                          <h3 className="text-base text-foreground">{track.title}</h3>
+                          <span className="text-xs text-muted">coming soon</span>
+                        </div>
                       </div>
-                      <h3 className="text-base text-foreground transition-colors group-hover:text-accent-dark">
-                        {track.title}
-                      </h3>
-                      <span className="rounded bg-accent px-2 py-0.5 text-xs text-white">
-                        Featured
-                      </span>
-                      <span className="rounded bg-charcoal px-2 py-0.5 text-xs text-white/80">
-                        {track.moduleCount} modules
-                      </span>
+                      <p className="mt-3 text-sm text-foreground/40">
+                        {track.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-foreground/65">
-                      {track.description}
+                  );
+                }
+
+                return (
+                  <Link
+                    key={track.slug}
+                    href={`/learn/${track.slug}`}
+                    className="group block rounded-2xl border-2 border-accent/30 bg-surface p-6 transition-all duration-300 hover:border-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-xl transition-transform group-hover:scale-110 group-hover:rotate-3">
+                          {track.icon}
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-lg text-foreground transition-colors group-hover:text-accent-dark">
+                              {track.title}
+                            </h3>
+                            <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs text-white">
+                              featured
+                            </span>
+                          </div>
+                          <p className="text-sm text-foreground/55">
+                            {track.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <svg
+                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                        className="mt-2 shrink-0 text-muted transition-all group-hover:translate-x-1 group-hover:text-accent"
+                        aria-hidden="true"
+                      >
+                        <polyline points="9 18 15 12 9 6" />
+                      </svg>
+                    </div>
+
+                    <div className="mt-4">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-surface-alt">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-accent to-pop-green transition-all duration-500"
+                          style={{
+                            width: `${(available / track.moduleCount) * 100}%`,
+                          }}
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-muted">
+                        {available} of {track.moduleCount} modules ready — let&apos;s go
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        </ScrollReveal>
+
+        {/* ─── Section 2: How this site works ─── */}
+        <ScrollReveal>
+          <section className="mb-16">
+            <p className="mb-6 text-sm uppercase tracking-widest text-accent">
+              how this works
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  icon: <Cell size={32} />,
+                  title: "short modules",
+                  desc: "5–10 minutes each. read one while you wait for your boba.",
+                  bg: "bg-charcoal",
+                },
+                {
+                  icon: <DNAHelix size={32} />,
+                  title: "clear sections",
+                  desc: "every module follows the same structure. you always know where you are.",
+                  bg: "bg-pop-blue",
+                },
+                {
+                  icon: <Plasmid size={32} />,
+                  title: "easy on the eyes",
+                  desc: "calm colors, simple diagrams, lots of spacing. no headache-inducing walls of text.",
+                  bg: "bg-accent",
+                },
+                {
+                  icon: <Flask size={32} />,
+                  title: "multiple formats",
+                  desc: "prefer reading? quizzes? 3-minute email bursts? we got you.",
+                  bg: "bg-charcoal",
+                },
+              ].map((item, i) => (
+                <ScrollReveal key={i} delay={i * 80}>
+                  <div className="rounded-2xl border border-border bg-surface p-5 transition-all hover:border-accent/30 hover:-translate-y-0.5">
+                    <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${item.bg}`}>
+                      {item.icon}
+                    </div>
+                    <h3 className="mb-1 text-sm text-foreground">{item.title}</h3>
+                    <p className="text-xs text-foreground/50 leading-relaxed">
+                      {item.desc}
                     </p>
                   </div>
-
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="mt-1 shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-accent"
-                    aria-hidden="true"
-                  >
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </div>
-
-                <div className="mt-4">
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-alt">
-                    <div
-                      className="h-full rounded-full bg-accent transition-all duration-300"
-                      style={{
-                        width: `${(available / track.moduleCount) * 100}%`,
-                      }}
-                    />
-                  </div>
-                  <p className="mt-2 text-xs text-muted">
-                    {available} of {track.moduleCount} modules available
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section 2: How this site works */}
-      <section className="mb-14">
-        <h2 className="mb-5 text-xs uppercase tracking-wider text-muted">
-          How this site works
-        </h2>
-
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-border bg-surface p-5">
-            <div className="mb-2 flex h-8 w-8 items-center justify-center rounded bg-charcoal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
-              </svg>
+                </ScrollReveal>
+              ))}
             </div>
-            <h3 className="mb-1 text-sm text-foreground">Short modules</h3>
-            <p className="text-xs text-foreground/60 leading-relaxed">
-              Each module takes 5–10 minutes. Read one on a coffee break.
-            </p>
-          </div>
+          </section>
+        </ScrollReveal>
 
-          <div className="rounded-xl border border-border bg-surface p-5">
-            <div className="mb-2 flex h-8 w-8 items-center justify-center rounded bg-charcoal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" aria-hidden="true">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-              </svg>
+        {/* ─── Section 3: Featured modules ─── */}
+        <ScrollReveal>
+          <section className="mb-16">
+            <p className="mb-6 text-sm uppercase tracking-widest text-accent">
+              start here
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {featuredModules.map((mod, i) => {
+                if (!mod) return null;
+                const colors = ["border-accent/40", "border-pop-green/40", "border-pop-blue/40"];
+                const bgs = ["bg-accent", "bg-pop-green", "bg-pop-blue"];
+                return (
+                  <ScrollReveal key={mod.slug} delay={i * 100}>
+                    <Link
+                      href={`/learn/beginner/${mod.slug}`}
+                      className={`group block rounded-2xl border-2 ${colors[i]} bg-surface p-5 transition-all hover:-translate-y-1 hover:shadow-md`}
+                    >
+                      <span className={`mb-3 inline-block rounded-full ${bgs[i]} px-2.5 py-0.5 text-xs text-white`}>
+                        {mod.level}
+                      </span>
+                      <h3 className="mb-1.5 text-sm text-foreground transition-colors group-hover:text-accent-dark">
+                        {mod.title}
+                      </h3>
+                      <p className="mb-3 text-xs text-foreground/50 leading-relaxed">
+                        {mod.description}
+                      </p>
+                      <p className="text-xs text-muted">{mod.minutes} min read</p>
+                    </Link>
+                  </ScrollReveal>
+                );
+              })}
             </div>
-            <h3 className="mb-1 text-sm text-foreground">Clear section titles</h3>
-            <p className="text-xs text-foreground/60 leading-relaxed">
-              Every module follows the same structure so you always know where you are.
+          </section>
+        </ScrollReveal>
+
+        {/* ─── Section 4: Newsletter ─── */}
+        <ScrollReveal>
+          <section>
+            <p className="mb-6 text-sm uppercase tracking-widest text-accent">
+              busy mode
             </p>
-          </div>
-
-          <div className="rounded-xl border border-border bg-surface p-5">
-            <div className="mb-2 flex h-8 w-8 items-center justify-center rounded bg-accent">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" />
-              </svg>
-            </div>
-            <h3 className="mb-1 text-sm text-foreground">Low-overstimulation visuals</h3>
-            <p className="text-xs text-foreground/60 leading-relaxed">
-              Calm colors, simple diagrams, generous spacing. Designed to be easy on the eyes.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-border bg-surface p-5">
-            <div className="mb-2 flex h-8 w-8 items-center justify-center rounded bg-charcoal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" aria-hidden="true">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </div>
-            <h3 className="mb-1 text-sm text-foreground">Inclusive formats</h3>
-            <p className="text-xs text-foreground/60 leading-relaxed">
-              Interactive quizzes, readable articles, quick newsletter bursts. Something for everyone.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Featured modules */}
-      <section className="mb-14">
-        <h2 className="mb-5 text-xs uppercase tracking-wider text-muted">
-          Featured modules
-        </h2>
-
-        <div className="grid gap-3 sm:grid-cols-3">
-          {featuredModules.map((mod) => {
-            if (!mod) return null;
-            return (
+            <Newsletter source="learn" />
+            <p className="mt-4 text-center text-xs text-muted">
               <Link
-                key={mod.slug}
-                href={`/learn/beginner/${mod.slug}`}
-                className="group rounded-xl border border-border bg-surface p-5 transition-all hover:border-accent/40 hover:-translate-y-0.5"
+                href="/newsletter"
+                className="transition-colors hover:text-accent"
               >
-                <span className="mb-2 inline-block rounded bg-accent-light px-2 py-0.5 text-xs text-accent-dark">
-                  {mod.level}
-                </span>
-                <h3 className="mb-1 text-sm text-foreground transition-colors group-hover:text-accent-dark">
-                  {mod.title}
-                </h3>
-                <p className="text-xs text-foreground/55 leading-relaxed">
-                  {mod.description}
-                </p>
-                <p className="mt-3 text-xs text-muted">{mod.minutes} min</p>
+                browse past issues →
               </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Section 4: Newsletter */}
-      <section>
-        <h2 className="mb-5 text-xs uppercase tracking-wider text-muted">
-          Newsletter / quick bursts
-        </h2>
-        <Newsletter source="learn" />
-        <p className="mt-3 text-center text-xs text-muted">
-          <Link
-            href="/newsletter"
-            className="transition-colors hover:text-accent"
-          >
-            Browse the newsletter archive →
-          </Link>
-        </p>
-      </section>
+            </p>
+          </section>
+        </ScrollReveal>
+      </div>
     </div>
   );
 }
