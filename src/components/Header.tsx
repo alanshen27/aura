@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface NavDropdown {
   label: string;
@@ -55,22 +55,34 @@ const navItems: NavItem[] = [
 
 function DropdownItem({ item }: { item: NavDropdown }) {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div ref={ref} className="relative">
       <button
-        className="flex items-center gap-1 rounded-full px-3 py-1.5 text-xs tracking-wide text-white/50 transition-all hover:bg-charcoal-light hover:text-white/80"
+        onClick={() => setOpen(!open)}
+        className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-xs font-medium tracking-wide transition-all ${
+          open
+            ? "bg-white/10 text-white"
+            : "text-white/60 hover:bg-white/5 hover:text-white/90"
+        }`}
         aria-expanded={open}
       >
         {item.label}
         <svg
           width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-          className={`transition-transform ${open ? "rotate-180" : ""}`}
+          className={`ml-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           aria-hidden="true"
         >
           <polyline points="6 9 12 15 18 9" />
@@ -78,12 +90,13 @@ function DropdownItem({ item }: { item: NavDropdown }) {
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-1 min-w-[160px] rounded-xl border border-white/10 bg-charcoal p-1.5 shadow-xl">
+        <div className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-xl border border-white/10 bg-charcoal/95 p-2 shadow-2xl backdrop-blur-md">
           {item.items.map((sub) => (
             <Link
               key={sub.href}
               href={sub.href}
-              className="block rounded-lg px-3 py-2 text-xs text-white/60 transition-all hover:bg-white/10 hover:text-white"
+              onClick={() => setOpen(false)}
+              className="block rounded-lg px-3.5 py-2.5 text-xs font-medium text-white/60 transition-all hover:bg-accent/20 hover:text-white"
             >
               {sub.label}
             </Link>
@@ -98,18 +111,15 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-charcoal/10 bg-charcoal">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+    <header className="sticky top-0 z-40 border-b border-white/5 bg-charcoal/95 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-sm tracking-widest text-white/90 transition-colors hover:text-accent"
+          className="flex items-center gap-2.5 text-sm font-medium tracking-widest text-white/90 transition-colors hover:text-accent"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect width="11" height="11" rx="2" fill="white" fillOpacity="0.9" />
-            <rect x="13" width="11" height="11" rx="2" fill="white" fillOpacity="0.6" />
-            <rect y="13" width="11" height="11" rx="2" fill="white" fillOpacity="0.6" />
-            <rect x="13" y="13" width="11" height="11" rx="2" fill="currentColor" className="text-accent" />
-          </svg>
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-accent to-pop-purple">
+            <span className="text-xs font-bold text-white">id</span>
+          </div>
           idkaasynbio
         </Link>
 
@@ -122,7 +132,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-1.5 text-xs tracking-wide text-white/50 transition-all hover:bg-charcoal-light hover:text-white/80"
+                className="rounded-full px-3.5 py-2 text-xs font-medium tracking-wide text-white/60 transition-all hover:bg-white/5 hover:text-white/90"
               >
                 {item.label}
               </Link>
@@ -132,11 +142,11 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-charcoal-light hover:text-white md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-white/10 hover:text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             {mobileOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -155,16 +165,16 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-white/5 bg-charcoal px-6 py-4 md:hidden">
+        <div className="border-t border-white/5 bg-charcoal/95 px-6 py-4 backdrop-blur-md md:hidden">
           {navItems.map((item, i) =>
             isDropdown(item) ? (
-              <div key={i} className="mb-3">
-                <p className="mb-1.5 text-xs uppercase tracking-wider text-white/30">{item.label}</p>
+              <div key={i} className="mb-4">
+                <p className="mb-2 text-xs uppercase tracking-wider text-white/30">{item.label}</p>
                 {item.items.map((sub) => (
                   <Link
                     key={sub.href}
                     href={sub.href}
-                    className="block py-1.5 text-sm text-white/60 transition-colors hover:text-accent"
+                    className="block py-2 text-sm text-white/60 transition-colors hover:text-accent"
                     onClick={() => setMobileOpen(false)}
                   >
                     {sub.label}
@@ -175,7 +185,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-1.5 text-sm text-white/60 transition-colors hover:text-accent"
+                className="block py-2 text-sm text-white/60 transition-colors hover:text-accent"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}

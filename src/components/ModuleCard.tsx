@@ -8,16 +8,16 @@ interface ModuleCardProps {
 }
 
 const NUMBER_COLORS = [
-  "bg-accent",
-  "bg-pop-blue",
-  "bg-pop-green",
-  "bg-accent",
-  "bg-pop-yellow",
-  "bg-pop-blue",
-  "bg-pop-green",
-  "bg-accent",
-  "bg-pop-yellow",
-  "bg-pop-blue",
+  "bg-gradient-to-br from-accent to-pop-purple",
+  "bg-gradient-to-br from-pop-blue to-pop-purple",
+  "bg-gradient-to-br from-pop-green to-pop-blue",
+  "bg-gradient-to-br from-pop-yellow to-pop-orange",
+  "bg-gradient-to-br from-pop-orange to-accent",
+  "bg-gradient-to-br from-pop-purple to-pop-blue",
+  "bg-gradient-to-br from-pop-green to-pop-yellow",
+  "bg-gradient-to-br from-accent to-pop-orange",
+  "bg-gradient-to-br from-pop-blue to-pop-green",
+  "bg-gradient-to-br from-pop-purple to-accent",
 ];
 
 export default function ModuleCard({ module, index }: ModuleCardProps) {
@@ -72,7 +72,7 @@ export default function ModuleCard({ module, index }: ModuleCardProps) {
 
         <div className="flex shrink-0 flex-col items-end gap-2">
           <ModuleIllustration slug={module.slug} size={48} className="hidden opacity-25 transition-opacity group-hover:opacity-50 sm:block" />
-          <span className="rounded-full bg-charcoal px-4 py-1.5 text-xs text-white transition-all group-hover:bg-accent group-hover:shadow-md group-hover:shadow-accent/20">
+          <span className="rounded-full bg-gradient-to-r from-charcoal to-charcoal-light px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-all group-hover:from-accent group-hover:to-pop-purple group-hover:shadow-md group-hover:shadow-accent/20">
             start →
           </span>
         </div>

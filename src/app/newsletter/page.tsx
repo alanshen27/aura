@@ -13,8 +13,8 @@ export default function NewsletterPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-charcoal py-14 sm:py-18">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="banner-overlay bg-charcoal py-16 sm:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           <p className="mb-2 text-sm text-accent animate-fade-in">newsletter</p>
           <h1 className="mb-3 text-3xl tracking-tight text-white sm:text-4xl animate-fade-in-up">
             synbio in 3 minutes
@@ -26,7 +26,7 @@ export default function NewsletterPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-3xl px-6 py-12">
+      <div className="mx-auto max-w-6xl px-6 py-14">
         {/* Signup */}
         <ScrollReveal>
           <section className="mb-16">

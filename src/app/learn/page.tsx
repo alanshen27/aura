@@ -22,8 +22,8 @@ export default function LearnPage() {
   return (
     <div>
       {/* ─── Hero ─── */}
-      <section className="relative overflow-hidden bg-charcoal py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="relative overflow-hidden banner-overlay bg-charcoal py-18 sm:py-24">
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="mb-2 text-sm text-accent animate-fade-in">the learning hub</p>
@@ -46,7 +46,7 @@ export default function LearnPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-3xl px-6 py-12">
+      <div className="mx-auto max-w-6xl px-6 py-14">
         {/* ─── Section 1: Pick your track ─── */}
         <ScrollReveal>
           <section className="mb-16">

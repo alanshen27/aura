@@ -17,8 +17,8 @@ export default function BeginnerPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-charcoal py-14 sm:py-16">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="banner-overlay bg-charcoal py-16 sm:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           <div className="mb-2 flex items-center gap-2 text-sm text-white/40">
             <Link href="/learn" className="transition-colors hover:text-accent">
               learn
@@ -61,7 +61,7 @@ export default function BeginnerPage() {
       </section>
 
       {/* Module list */}
-      <div className="mx-auto max-w-3xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-4">
           {trackModules.map((mod, i) => (
             <ScrollReveal key={mod.slug} delay={i * 50}>

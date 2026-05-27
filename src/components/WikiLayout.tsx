@@ -1,6 +1,5 @@
 import Link from "next/link";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
-import ScrollProgress from "@/components/ScrollProgress";
 
 interface WikiLayoutProps {
   title: string;
@@ -21,11 +20,9 @@ export default function WikiLayout({
 }: WikiLayoutProps) {
   return (
     <>
-      <ScrollProgress />
-
       {/* Header */}
-      <section className="bg-charcoal py-12 sm:py-16">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="banner-overlay bg-charcoal py-14 sm:py-20">
+        <div className="relative z-10 mx-auto max-w-5xl px-6">
           {/* Breadcrumbs */}
           <div className="mb-3 flex items-center gap-2 text-sm text-white/40">
             <Link href="/" className="transition-colors hover:text-accent">
@@ -54,7 +51,7 @@ export default function WikiLayout({
       </section>
 
       {/* Content */}
-      <article className="mx-auto max-w-3xl px-6 py-12">
+      <article className="mx-auto max-w-5xl px-6 py-14">
         <MarkdownRenderer content={markdown} />
 
         {/* Navigation */}

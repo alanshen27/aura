@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getModuleBySlug, getModulesByTrack } from "@/content/modules";
-import ScrollProgress from "@/components/ScrollProgress";
 import ModuleMeta from "@/components/ModuleMeta";
 import ModuleSection from "@/components/ModuleSection";
 import KeyTerms from "@/components/KeyTerms";
@@ -56,9 +55,7 @@ export default async function ModulePage({ params }: PageProps) {
 
   return (
     <>
-      <ScrollProgress />
-
-      <article className="mx-auto max-w-2xl px-6 pb-20 pt-12">
+      <article className="mx-auto max-w-4xl px-6 pb-20 pt-12">
         {/* Breadcrumb */}
         <div className="mb-2 flex items-center gap-2 text-sm text-muted">
           <Link href="/learn" className="transition-colors hover:text-accent">
