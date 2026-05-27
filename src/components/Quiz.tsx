@@ -21,8 +21,10 @@ export default function Quiz({ questions }: QuizProps) {
   }
 
   return (
-    <section className="mb-14 rounded-2xl border border-border bg-surface p-6">
-      <h2 className="mb-6 text-lg text-foreground">Quick Check</h2>
+    <section className="mb-14 rounded-xl border border-border bg-surface p-6">
+      <h2 className="mb-6 text-sm uppercase tracking-wider text-foreground/70">
+        Quick Check
+      </h2>
 
       <div className="space-y-8">
         {questions.map((q, qi) => (
@@ -36,16 +38,16 @@ export default function Quiz({ questions }: QuizProps) {
                 const isCorrect = oi === q.correctIndex;
 
                 let optionStyle =
-                  "border border-border bg-background text-foreground/80";
+                  "border border-border bg-background text-foreground/75";
                 if (isRevealed && isCorrect) {
                   optionStyle =
                     "border border-accent bg-accent-light text-accent-dark";
                 } else if (isRevealed && isSelected && !isCorrect) {
                   optionStyle =
-                    "border border-red-200 bg-red-50 text-red-700";
+                    "border border-red-300 bg-red-50 text-red-700";
                 } else if (isSelected) {
                   optionStyle =
-                    "border border-accent/50 bg-accent-light/50 text-foreground";
+                    "border border-charcoal bg-charcoal/5 text-foreground";
                 }
 
                 return (
@@ -53,8 +55,8 @@ export default function Quiz({ questions }: QuizProps) {
                     key={oi}
                     onClick={() => handleSelect(qi, oi)}
                     disabled={isRevealed}
-                    className={`block w-full rounded-xl px-4 py-2.5 text-left text-sm transition-colors ${optionStyle} ${
-                      !isRevealed ? "cursor-pointer hover:border-accent/30" : ""
+                    className={`block w-full rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${optionStyle} ${
+                      !isRevealed ? "cursor-pointer hover:border-charcoal/40" : ""
                     }`}
                   >
                     {opt}
@@ -66,7 +68,7 @@ export default function Quiz({ questions }: QuizProps) {
             {selected[qi] !== undefined && !revealed[qi] && (
               <button
                 onClick={() => handleCheck(qi)}
-                className="mt-4 rounded-xl bg-accent px-5 py-2 text-sm text-white transition-colors hover:bg-accent-dark"
+                className="mt-4 rounded-lg bg-charcoal px-5 py-2 text-sm text-white transition-colors hover:bg-charcoal-light"
               >
                 Check answer
               </button>

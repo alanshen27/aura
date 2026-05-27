@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 export default function LearnPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 pb-20 pt-12">
-      <h1 className="mb-3 text-2xl tracking-tight text-foreground">Learn</h1>
-      <p className="mb-10 text-base text-foreground/70">
+      <h1 className="mb-3 text-xl tracking-tight text-foreground">Learn</h1>
+      <p className="mb-10 text-sm text-foreground/70">
         Pick a track and start learning. Each module is short, clear, and
         designed to stand on its own.
       </p>
@@ -27,29 +27,32 @@ export default function LearnPage() {
             <Link
               key={track.slug}
               href={`/learn/${track.slug}`}
-              className="group block rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/30 hover:shadow-sm"
+              className="group block rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/40 hover:shadow-sm"
             >
               <div className="flex items-start justify-between">
                 <div>
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="text-2xl" aria-hidden="true">
-                      {track.icon}
-                    </span>
-                    <h2 className="text-lg text-foreground transition-colors group-hover:text-accent-dark">
+                    <div className="grid h-8 w-8 grid-cols-2 gap-0.5 rounded">
+                      <div className="rounded-sm bg-charcoal" />
+                      <div className="rounded-sm bg-charcoal" />
+                      <div className="rounded-sm bg-charcoal" />
+                      <div className="rounded-sm bg-accent" />
+                    </div>
+                    <h2 className="text-base text-foreground transition-colors group-hover:text-accent-dark">
                       {track.title}
                     </h2>
-                    <span className="rounded-full bg-accent-light px-2.5 py-0.5 text-xs text-accent-dark">
+                    <span className="rounded bg-charcoal px-2 py-0.5 text-xs text-white/80">
                       {track.moduleCount} modules
                     </span>
                   </div>
-                  <p className="text-sm text-foreground/70">
+                  <p className="text-sm text-foreground/65">
                     {track.description}
                   </p>
                 </div>
 
                 <svg
-                  width="20"
-                  height="20"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -64,7 +67,7 @@ export default function LearnPage() {
               </div>
 
               <div className="mt-4">
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-alt">
+                <div className="h-1 w-full overflow-hidden rounded-full bg-surface-alt">
                   <div
                     className="h-full rounded-full bg-accent transition-all duration-300"
                     style={{

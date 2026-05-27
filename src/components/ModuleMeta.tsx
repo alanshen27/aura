@@ -5,11 +5,11 @@ interface ModuleMetaProps {
 
 export default function ModuleMeta({ level, minutes }: ModuleMetaProps) {
   return (
-    <div className="mb-10 flex flex-wrap items-center gap-4 text-sm text-muted">
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-light px-3 py-1 text-accent-dark">
+    <div className="mb-10 flex flex-wrap items-center gap-3 text-xs text-muted">
+      <span className="inline-flex items-center gap-1.5 rounded bg-charcoal px-3 py-1 text-white/80">
         <svg
-          width="14"
-          height="14"
+          width="12"
+          height="12"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -24,10 +24,10 @@ export default function ModuleMeta({ level, minutes }: ModuleMetaProps) {
         {level}
       </span>
 
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-alt px-3 py-1">
+      <span className="inline-flex items-center gap-1.5 rounded bg-accent-light px-3 py-1 text-accent-dark">
         <svg
-          width="14"
-          height="14"
+          width="12"
+          height="12"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

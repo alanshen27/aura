@@ -5,40 +5,92 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-3xl px-6">
       <section className="pb-16 pt-20 text-center">
-        <div className="mb-8">
-          <svg
-            className="mx-auto mb-6 text-accent"
-            width="64"
-            height="64"
-            viewBox="0 0 64 64"
-            fill="none"
-            aria-hidden="true"
-          >
-            <circle
-              cx="32"
-              cy="32"
-              r="28"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <ellipse
-              cx="32"
-              cy="32"
-              rx="12"
-              ry="28"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <line
-              x1="4"
-              y1="32"
-              x2="60"
-              y2="32"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <circle cx="32" cy="32" r="4" fill="currentColor" />
-          </svg>
+        <div className="mx-auto mb-10 grid w-32 grid-cols-2 gap-1.5">
+          <div className="flex aspect-square items-center justify-center rounded-md bg-charcoal">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 24 L24 4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M4 18 L18 4"
+                stroke="white"
+                strokeWidth="0.75"
+                strokeLinecap="round"
+                opacity="0.5"
+              />
+            </svg>
+          </div>
+          <div className="flex aspect-square items-center justify-center rounded-md bg-charcoal">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 22 L22 6"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M10 22 L22 10"
+                stroke="white"
+                strokeWidth="0.75"
+                strokeLinecap="round"
+                opacity="0.5"
+              />
+            </svg>
+          </div>
+          <div className="flex aspect-square items-center justify-center rounded-md bg-charcoal">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 24 L24 4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div className="flex aspect-square items-center justify-center rounded-md bg-accent">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 24 L24 4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M4 18 L18 4"
+                stroke="white"
+                strokeWidth="0.75"
+                strokeLinecap="round"
+                opacity="0.6"
+              />
+            </svg>
+          </div>
         </div>
 
         <h1 className="mb-6 text-3xl leading-tight tracking-tight text-foreground sm:text-4xl">
@@ -59,12 +111,12 @@ export default function Home() {
 
         <Link
           href="/learn"
-          className="inline-flex items-center gap-2 rounded-xl bg-accent px-8 py-3.5 text-sm text-white transition-colors hover:bg-accent-dark"
+          className="inline-flex items-center gap-2 rounded-lg bg-charcoal px-8 py-3 text-sm tracking-wide text-white transition-colors hover:bg-charcoal-light"
         >
           Start Learning
           <svg
-            width="16"
-            height="16"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -80,39 +132,37 @@ export default function Home() {
       </section>
 
       <section className="pb-16">
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-surface p-6 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-light">
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-surface p-5 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded bg-charcoal">
               <svg
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="white"
                 strokeWidth="2"
-                className="text-accent-dark"
                 aria-hidden="true"
               >
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
               </svg>
             </div>
-            <h3 className="mb-2 text-sm text-foreground">Simple language</h3>
+            <h3 className="mb-1.5 text-sm text-foreground">Simple language</h3>
             <p className="text-xs leading-relaxed text-muted">
               Every concept explained with everyday words and helpful analogies.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-6 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-light">
+          <div className="rounded-xl border border-border bg-surface p-5 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded bg-accent">
               <svg
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="white"
                 strokeWidth="2"
-                className="text-accent-dark"
                 aria-hidden="true"
               >
                 <rect x="3" y="3" width="7" height="7" />
@@ -121,23 +171,22 @@ export default function Home() {
                 <rect x="14" y="14" width="7" height="7" />
               </svg>
             </div>
-            <h3 className="mb-2 text-sm text-foreground">Bite-sized modules</h3>
+            <h3 className="mb-1.5 text-sm text-foreground">Bite-sized modules</h3>
             <p className="text-xs leading-relaxed text-muted">
               Short lessons that fit into your schedule. Read one in a coffee
               break.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-6 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-light">
+          <div className="rounded-xl border border-border bg-surface p-5 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded bg-charcoal">
               <svg
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="white"
                 strokeWidth="2"
-                className="text-accent-dark"
                 aria-hidden="true"
               >
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -146,7 +195,7 @@ export default function Home() {
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
             </div>
-            <h3 className="mb-2 text-sm text-foreground">For everyone</h3>
+            <h3 className="mb-1.5 text-sm text-foreground">For everyone</h3>
             <p className="text-xs leading-relaxed text-muted">
               Designed for different ages and backgrounds. Inclusive by default.
             </p>

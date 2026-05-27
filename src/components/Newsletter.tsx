@@ -29,14 +29,16 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="rounded-2xl border border-border bg-surface p-8 text-center">
-      <h2 className="mb-2 text-lg text-foreground">Stay in the loop</h2>
-      <p className="mb-6 text-sm text-muted">
+    <section className="rounded-xl border border-border bg-charcoal p-8 text-center">
+      <h2 className="mb-2 text-sm uppercase tracking-wider text-white/80">
+        Stay in the loop
+      </h2>
+      <p className="mb-6 text-xs text-white/50">
         Short updates on new modules and synbio news. No spam, ever.
       </p>
 
       {status === "success" ? (
-        <p className="text-sm text-accent-dark">
+        <p className="text-sm text-accent">
           You are on the list. Welcome aboard.
         </p>
       ) : (
@@ -54,11 +56,11 @@ export default function Newsletter() {
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
+            className="flex-1 rounded-lg border border-white/10 bg-charcoal-light px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-accent focus:outline-none"
           />
           <button
             type="submit"
-            className="rounded-xl bg-accent px-6 py-2.5 text-sm text-white transition-colors hover:bg-accent-dark"
+            className="rounded-lg bg-accent px-6 py-2.5 text-sm text-white transition-colors hover:bg-accent-dark"
           >
             Subscribe
           </button>
@@ -66,7 +68,7 @@ export default function Newsletter() {
       )}
 
       {status === "error" && (
-        <p className="mt-3 text-xs text-red-500">
+        <p className="mt-3 text-xs text-red-400">
           Something went wrong. Please try again.
         </p>
       )}

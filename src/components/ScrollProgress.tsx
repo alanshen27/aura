@@ -22,7 +22,7 @@ export default function ScrollProgress() {
 
   return (
     <div
-      className="fixed top-16 left-0 z-50 h-1 w-full bg-border"
+      className="fixed top-14 left-0 z-50 h-0.5 w-full bg-charcoal/10"
       role="progressbar"
       aria-valuenow={Math.round(progress)}
       aria-valuemin={0}
@@ -30,7 +30,7 @@ export default function ScrollProgress() {
       aria-label="Reading progress"
     >
       <div
-        className="h-full bg-progress transition-[width] duration-150 ease-out"
+        className="h-full bg-accent transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>
