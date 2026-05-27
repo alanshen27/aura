@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
+    const prisma = getPrisma();
     const issues = await prisma.newsletterIssue.findMany({
       where: { published: true },
       orderBy: { number: "desc" },
@@ -23,6 +24,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Title and number are required" }, { status: 400 });
     }
 
+    const prisma = getPrisma();
     const issue = await prisma.newsletterIssue.upsert({
       where: { number },
       update: {
