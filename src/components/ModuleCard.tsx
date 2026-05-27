@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Module } from "@/content/modules";
+import ModuleIllustration from "@/components/illustrations/ModuleIllustration";
 
 interface ModuleCardProps {
   module: Module;
@@ -31,26 +32,35 @@ export default function ModuleCard({ module, index }: ModuleCardProps) {
   return (
     <Link
       href={`/learn/beginner/${module.slug}`}
-      className="group block rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-accent/40 hover:shadow-sm"
+      className="group block rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-accent/40 hover:-translate-y-0.5 hover:shadow-sm"
     >
-      <div className="mb-3 flex items-center gap-3">
-        <span className="flex h-7 w-7 items-center justify-center rounded bg-charcoal text-xs text-white">
-          {index + 1}
-        </span>
-        <h3 className="text-sm text-foreground transition-colors group-hover:text-accent-dark">
-          {module.title}
-        </h3>
-      </div>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <div className="mb-2 flex items-center gap-3">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-charcoal text-xs text-white">
+              {index + 1}
+            </span>
+            <h3 className="text-sm text-foreground transition-colors group-hover:text-accent-dark">
+              {module.title}
+            </h3>
+          </div>
 
-      <p className="mb-4 text-xs leading-relaxed text-foreground/65">
-        {module.description}
-      </p>
+          <p className="mb-4 text-xs leading-relaxed text-foreground/65">
+            {module.description}
+          </p>
 
-      <div className="flex items-center gap-3 text-xs text-muted">
-        <span className="rounded bg-accent-light px-2 py-0.5 text-accent-dark">
-          {module.level}
-        </span>
-        <span>{module.minutes} min</span>
+          <div className="flex items-center gap-3">
+            <span className="rounded bg-accent-light px-2 py-0.5 text-xs text-accent-dark">
+              {module.level}
+            </span>
+            <span className="text-xs text-muted">{module.minutes} min</span>
+            <span className="ml-auto rounded-lg bg-charcoal px-3 py-1 text-xs text-white transition-colors group-hover:bg-accent">
+              Start
+            </span>
+          </div>
+        </div>
+
+        <ModuleIllustration slug={module.slug} size={56} className="hidden shrink-0 opacity-30 sm:block" />
       </div>
     </Link>
   );

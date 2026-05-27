@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email } = body;
+    const { email, interest, consent, source, createdAt } = body;
 
     if (!email || typeof email !== "string") {
       return NextResponse.json(
@@ -12,7 +12,16 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log(`[newsletter] New subscriber: ${email}`);
+    const lead = {
+      email,
+      interest: interest || null,
+      consent: consent ?? false,
+      source: source || "unknown",
+      createdAt: createdAt || new Date().toISOString(),
+    };
+
+    // MVP: log to console. Replace with email provider (Resend, Mailchimp, etc.) for production.
+    console.log("[newsletter] New subscriber:", JSON.stringify(lead, null, 2));
 
     return NextResponse.json({ success: true });
   } catch {

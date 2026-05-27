@@ -6,18 +6,19 @@ import Cell from "./Cell";
 import Protein from "./Protein";
 import Flask from "./Flask";
 import GeneCircuit from "./GeneCircuit";
+import PetriDish from "./PetriDish";
 
 const illustrationMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
   "intro-to-synbio": Flask,
+  "how-does-dna-store-information": DNAHelix,
   "what-are-proteins": Protein,
+  "what-is-gene-expression": GeneCircuit,
+  "what-are-bacteria": Cell,
   "what-are-plasmids": Plasmid,
-  "dna-basics": DNAHelix,
-  "gene-expression": GeneCircuit,
-  "genetic-circuits": GeneCircuit,
-  "crispr-intro": DNAHelix,
-  "biobricks": Plasmid,
-  "biosafety": Cell,
-  "real-world-synbio": Flask,
+  "how-do-scientists-modify-organisms": PetriDish,
+  "what-is-crispr": DNAHelix,
+  "synbio-in-everyday-life": Flask,
+  "ethics-and-safety": Cell,
 };
 
 interface ModuleIllustrationProps {

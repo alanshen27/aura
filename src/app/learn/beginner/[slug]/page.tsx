@@ -7,6 +7,7 @@ import ModuleMeta from "@/components/ModuleMeta";
 import ModuleSection from "@/components/ModuleSection";
 import KeyTerms from "@/components/KeyTerms";
 import Quiz from "@/components/Quiz";
+import TableOfContents from "@/components/TableOfContents";
 import ModuleIllustration from "@/components/illustrations/ModuleIllustration";
 
 interface PageProps {
@@ -58,6 +59,7 @@ export default async function ModulePage({ params }: PageProps) {
       <ScrollProgress />
 
       <article className="mx-auto max-w-2xl px-6 pb-20 pt-12">
+        {/* Breadcrumb */}
         <div className="mb-2 flex items-center gap-2 text-sm text-muted">
           <Link href="/learn" className="transition-colors hover:text-accent">
             Learn
@@ -72,17 +74,25 @@ export default async function ModulePage({ params }: PageProps) {
           <span aria-hidden="true">/</span>
         </div>
 
-        {/* Module header with illustration */}
-        <div className="mb-4 flex items-start justify-between gap-4">
+        {/* Module header */}
+        <div className="mb-2 flex items-start justify-between gap-4">
           <h1 className="text-2xl tracking-tight text-foreground sm:text-3xl">
             {mod.title}
           </h1>
           <ModuleIllustration slug={slug} size={72} className="shrink-0 opacity-50" />
         </div>
 
+        {/* Promise line */}
+        <p className="mb-4 text-sm text-accent-dark italic">
+          {mod.promise}
+        </p>
+
         <ModuleMeta level={mod.level} minutes={mod.minutes} />
 
-        {/* Decorative section divider */}
+        {/* Table of Contents */}
+        <TableOfContents sections={mod.sections} />
+
+        {/* Decorative divider */}
         <div className="mb-10 flex items-center gap-3 opacity-20">
           <div className="h-px flex-1 bg-charcoal" />
           <div className="grid h-4 w-4 grid-cols-2 gap-0.5">
@@ -94,14 +104,18 @@ export default async function ModulePage({ params }: PageProps) {
           <div className="h-px flex-1 bg-charcoal" />
         </div>
 
+        {/* Sections */}
         {mod.sections.map((section, i) => (
           <ModuleSection key={i} heading={section.heading} body={section.body} />
         ))}
 
+        {/* Key Terms */}
         <KeyTerms terms={mod.keyTerms} />
 
+        {/* Quiz */}
         {mod.quiz && mod.quiz.length > 0 && <Quiz questions={mod.quiz} />}
 
+        {/* Navigation */}
         <nav className="mt-16 flex items-center justify-between border-t border-border pt-8">
           {prev ? (
             <Link
