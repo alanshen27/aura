@@ -22,12 +22,12 @@ export default function WikiLayout({
   return (
     <>
       {/* Header */}
-      <section className="relative overflow-hidden animated-gradient-bg py-14 sm:py-20">
+      <section className="relative overflow-hidden border-b-2 border-foreground bg-accent py-14 sm:py-20">
         <AnimatedClipart variant="dark" density="sparse" />
         <div className="relative z-10 mx-auto max-w-5xl px-6">
           {/* Breadcrumbs */}
-          <div className="mb-3 flex items-center gap-2 text-sm text-white/40">
-            <Link href="/" className="transition-colors hover:text-accent">
+          <div className="mb-3 flex items-center gap-2 text-sm text-white/60">
+            <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
             {breadcrumbs.map((crumb) => (
@@ -35,7 +35,7 @@ export default function WikiLayout({
                 <span aria-hidden="true">/</span>
                 <Link
                   href={crumb.href}
-                  className="transition-colors hover:text-accent"
+                  className="transition-colors hover:text-white"
                 >
                   {crumb.label}
                 </Link>
@@ -43,10 +43,10 @@ export default function WikiLayout({
             ))}
           </div>
 
-          <p className="mb-2 text-xs uppercase tracking-widest text-accent">
+          <span className="mb-2 inline-block rounded-full border-2 border-white/30 bg-white/10 px-3 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
             {section}
-          </p>
-          <h1 className="text-3xl tracking-tight text-white sm:text-4xl animate-fade-in-up">
+          </span>
+          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl animate-bounce-in">
             {title}
           </h1>
         </div>
@@ -58,15 +58,15 @@ export default function WikiLayout({
 
         {/* Navigation */}
         {(prevPage || nextPage) && (
-          <nav className="mt-16 flex items-center justify-between border-t border-border pt-8">
+          <nav className="mt-16 flex items-center justify-between border-t-2 border-dashed border-border pt-8">
             {prevPage ? (
               <Link
                 href={prevPage.href}
-                className="group flex items-center gap-2 text-sm text-muted transition-all hover:text-accent hover:gap-3"
+                className="group flex items-center gap-2 rounded-full border-2 border-foreground px-5 py-2 text-sm font-bold text-foreground shadow-hard-sm transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:bg-tertiary hover:shadow-hard"
               >
                 <svg
                   width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                   className="transition-transform group-hover:-translate-x-0.5" aria-hidden="true"
                 >
                   <polyline points="15 18 9 12 15 6" />
@@ -79,12 +79,12 @@ export default function WikiLayout({
             {nextPage ? (
               <Link
                 href={nextPage.href}
-                className="group flex items-center gap-2 text-sm text-muted transition-all hover:text-accent hover:gap-3"
+                className="group flex items-center gap-2 rounded-full border-2 border-foreground px-5 py-2 text-sm font-bold text-foreground shadow-hard-sm transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:translate-x-1 hover:bg-tertiary hover:shadow-hard"
               >
                 {nextPage.label}
                 <svg
                   width="16" height="16" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                   className="transition-transform group-hover:translate-x-0.5" aria-hidden="true"
                 >
                   <polyline points="9 18 15 12 9 6" />
