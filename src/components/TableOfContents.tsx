@@ -14,10 +14,10 @@ function slugify(text: string): string {
 export default function TableOfContents({ sections }: TableOfContentsProps) {
   return (
     <nav
-      className="mb-10 rounded-xl border border-border bg-surface p-5"
+      className="mb-10 rounded-2xl border-2 border-foreground bg-card p-5 shadow-hard-sm"
       aria-label="Table of contents"
     >
-      <h2 className="mb-3 text-xs uppercase tracking-wider text-muted">
+      <h2 className="mb-3 text-xs font-bold uppercase tracking-wider text-foreground">
         In this module
       </h2>
       <ol className="space-y-1.5">
@@ -25,9 +25,9 @@ export default function TableOfContents({ sections }: TableOfContentsProps) {
           <li key={i}>
             <a
               href={`#${slugify(section.heading)}`}
-              className="group flex items-center gap-2 text-sm text-foreground/70 transition-colors hover:text-accent"
+              className="group flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all hover:text-accent hover:translate-x-1"
             >
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-background text-xs text-muted transition-colors group-hover:bg-accent-light group-hover:text-accent-dark">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border-2 border-foreground/30 bg-muted text-xs font-bold transition-all group-hover:border-accent group-hover:bg-accent/10 group-hover:text-accent">
                 {i + 1}
               </span>
               {section.heading}

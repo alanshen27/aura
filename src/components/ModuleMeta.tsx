@@ -5,15 +5,15 @@ interface ModuleMetaProps {
 
 export default function ModuleMeta({ level, minutes }: ModuleMetaProps) {
   return (
-    <div className="mb-10 flex flex-wrap items-center gap-3 text-xs text-muted">
-      <span className="inline-flex items-center gap-1.5 rounded bg-charcoal px-3 py-1 text-white/80">
+    <div className="mb-10 flex flex-wrap items-center gap-3">
+      <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-foreground bg-accent/10 px-4 py-1.5 text-xs font-bold shadow-hard-sm">
         <svg
-          width="12"
-          height="12"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
+          stroke="var(--accent)"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
@@ -24,14 +24,14 @@ export default function ModuleMeta({ level, minutes }: ModuleMetaProps) {
         {level}
       </span>
 
-      <span className="inline-flex items-center gap-1.5 rounded bg-accent-light px-3 py-1 text-accent-dark">
+      <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-foreground bg-tertiary/10 px-4 py-1.5 text-xs font-bold shadow-hard-sm">
         <svg
-          width="12"
-          height="12"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
+          stroke="var(--tertiary)"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"

@@ -21,15 +21,15 @@ export default function Quiz({ questions }: QuizProps) {
   }
 
   return (
-    <section className="mb-14 rounded-xl border border-border bg-surface p-6">
-      <h2 className="mb-6 text-sm uppercase tracking-wider text-foreground/70">
+    <section className="mb-14 rounded-2xl border-2 border-foreground bg-card p-6 shadow-hard">
+      <h2 className="mb-6 text-xs font-bold uppercase tracking-wider text-foreground">
         Quick Check
       </h2>
 
       <div className="space-y-8">
         {questions.map((q, qi) => (
           <div key={qi}>
-            <p className="mb-4 text-sm text-foreground">{q.question}</p>
+            <p className="mb-4 text-sm font-medium text-foreground">{q.question}</p>
 
             <div className="space-y-2">
               {q.options.map((opt, oi) => {
@@ -38,16 +38,16 @@ export default function Quiz({ questions }: QuizProps) {
                 const isCorrect = oi === q.correctIndex;
 
                 let optionStyle =
-                  "border border-border bg-background text-foreground/75";
+                  "border-2 border-border bg-background text-foreground/75";
                 if (isRevealed && isCorrect) {
                   optionStyle =
-                    "border border-accent bg-accent-light text-accent-dark";
+                    "border-2 border-foreground bg-quaternary/20 text-foreground shadow-hard-sm";
                 } else if (isRevealed && isSelected && !isCorrect) {
                   optionStyle =
-                    "border border-red-300 bg-red-50 text-red-700";
+                    "border-2 border-secondary bg-secondary/10 text-secondary";
                 } else if (isSelected) {
                   optionStyle =
-                    "border border-charcoal bg-charcoal/5 text-foreground";
+                    "border-2 border-foreground bg-accent/10 text-foreground shadow-hard-sm";
                 }
 
                 return (
@@ -55,8 +55,8 @@ export default function Quiz({ questions }: QuizProps) {
                     key={oi}
                     onClick={() => handleSelect(qi, oi)}
                     disabled={isRevealed}
-                    className={`block w-full rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${optionStyle} ${
-                      !isRevealed ? "cursor-pointer hover:border-charcoal/40" : ""
+                    className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${optionStyle} ${
+                      !isRevealed ? "cursor-pointer hover:border-foreground hover:-translate-y-0.5" : ""
                     }`}
                   >
                     {opt}
@@ -68,16 +68,16 @@ export default function Quiz({ questions }: QuizProps) {
             {selected[qi] !== undefined && !revealed[qi] && (
               <button
                 onClick={() => handleCheck(qi)}
-                className="mt-4 rounded-lg bg-charcoal px-5 py-2 text-sm text-white transition-colors hover:bg-charcoal-light"
+                className="btn-candy mt-4"
               >
                 Check answer
               </button>
             )}
 
             {revealed[qi] && (
-              <p className="mt-3 text-xs text-muted">
+              <p className="mt-3 text-xs font-bold text-muted-foreground">
                 {selected[qi] === q.correctIndex
-                  ? "Nice work."
+                  ? "Nice work!"
                   : `The answer is: ${q.options[q.correctIndex]}`}
               </p>
             )}

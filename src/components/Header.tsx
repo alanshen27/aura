@@ -71,16 +71,16 @@ function DropdownItem({ item }: { item: NavDropdown }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-xs font-medium tracking-wide transition-all ${
+        className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] border-2 ${
           open
-            ? "bg-white/10 text-white"
-            : "text-white/60 hover:bg-white/5 hover:text-white/90"
+            ? "border-foreground bg-tertiary text-foreground shadow-hard-sm"
+            : "border-transparent text-foreground/70 hover:border-foreground hover:bg-tertiary hover:text-foreground hover:shadow-hard-sm"
         }`}
         aria-expanded={open}
       >
         {item.label}
         <svg
-          width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
           className={`ml-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           aria-hidden="true"
@@ -90,13 +90,13 @@ function DropdownItem({ item }: { item: NavDropdown }) {
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-xl border border-white/10 bg-charcoal/95 p-2 shadow-2xl backdrop-blur-md">
+        <div className="absolute left-0 top-full z-[100] mt-2 min-w-[200px] rounded-2xl border-2 border-foreground bg-card p-2 shadow-hard">
           {item.items.map((sub) => (
             <Link
               key={sub.href}
               href={sub.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3.5 py-2.5 text-xs font-medium text-white/60 transition-all hover:bg-accent/20 hover:text-white"
+              className="block rounded-xl px-4 py-2.5 text-sm font-medium text-foreground/70 transition-all hover:bg-accent/10 hover:text-accent hover:translate-x-1"
             >
               {sub.label}
             </Link>
@@ -111,20 +111,22 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-charcoal/95 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/95 backdrop-blur-sm">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-sm font-medium tracking-widest text-white/90 transition-colors hover:text-accent"
+          className="group flex items-center gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-accent to-pop-purple">
-            <span className="text-xs font-bold text-white">id</span>
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-foreground bg-accent shadow-hard-sm transition-all group-hover:shadow-hard group-hover:-translate-y-0.5 group-hover:-translate-x-0.5">
+            <span className="text-xs font-extrabold text-white font-heading">id</span>
           </div>
-          idkaasynbio
+          <span className="text-sm font-bold tracking-wide text-foreground font-heading">
+            idkaasynbio
+          </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-0.5 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item, i) =>
             isDropdown(item) ? (
               <DropdownItem key={i} item={item} />
@@ -132,7 +134,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3.5 py-2 text-xs font-medium tracking-wide text-white/60 transition-all hover:bg-white/5 hover:text-white/90"
+                className="rounded-full border-2 border-transparent px-4 py-2 text-sm font-medium text-foreground/70 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-foreground hover:bg-quaternary hover:text-foreground hover:shadow-hard-sm"
               >
                 {item.label}
               </Link>
@@ -142,11 +144,11 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-white/10 hover:text-white md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-foreground text-foreground transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:bg-tertiary hover:shadow-hard-sm md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             {mobileOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -165,16 +167,16 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-white/5 bg-charcoal/95 px-6 py-4 backdrop-blur-md md:hidden">
+        <div className="border-t-2 border-foreground bg-background px-6 py-4 md:hidden">
           {navItems.map((item, i) =>
             isDropdown(item) ? (
               <div key={i} className="mb-4">
-                <p className="mb-2 text-xs uppercase tracking-wider text-white/30">{item.label}</p>
+                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">{item.label}</p>
                 {item.items.map((sub) => (
                   <Link
                     key={sub.href}
                     href={sub.href}
-                    className="block py-2 text-sm text-white/60 transition-colors hover:text-accent"
+                    className="block rounded-lg py-2 pl-3 text-sm font-medium text-foreground/70 transition-colors hover:text-accent"
                     onClick={() => setMobileOpen(false)}
                   >
                     {sub.label}
@@ -185,7 +187,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-sm text-white/60 transition-colors hover:text-accent"
+                className="block py-2 text-sm font-medium text-foreground/70 transition-colors hover:text-accent"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}

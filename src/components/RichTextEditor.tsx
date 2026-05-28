@@ -28,10 +28,10 @@ function ToolbarButton({
       type="button"
       onClick={onClick}
       title={title}
-      className={`rounded px-2 py-1 text-xs transition-colors ${
+      className={`rounded-lg border-2 px-2.5 py-1 text-xs font-bold transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
         active
-          ? "bg-accent text-white"
-          : "text-foreground/60 hover:bg-surface-alt hover:text-foreground"
+          ? "border-foreground bg-accent text-white shadow-hard-sm"
+          : "border-transparent text-muted-foreground hover:border-foreground hover:bg-tertiary hover:text-foreground hover:shadow-hard-sm"
       }`}
     >
       {children}
@@ -66,9 +66,9 @@ export default function RichTextEditor({
   if (!editor) return null;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-surface">
+    <div className="overflow-hidden rounded-2xl border-2 border-foreground bg-card shadow-hard">
       {editable && (
-        <div className="flex flex-wrap items-center gap-1 border-b border-border bg-background px-3 py-2">
+        <div className="flex flex-wrap items-center gap-1 border-b-2 border-foreground bg-muted px-3 py-2">
           <ToolbarButton
             onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
             active={editor.isActive("heading", { level: 2 })}

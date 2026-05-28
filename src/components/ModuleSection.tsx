@@ -15,11 +15,11 @@ export default function ModuleSection({ heading, body }: ModuleSectionProps) {
 
   return (
     <section id={slugify(heading)} className="mb-14 scroll-mt-20">
-      <h2 className="mb-6 text-xl text-foreground">{heading}</h2>
+      <h2 className="mb-6 text-xl font-bold text-foreground">{heading}</h2>
 
       <div className="space-y-5">
         {paragraphs.map((p, i) => (
-          <p key={i} className="text-base leading-relaxed text-foreground/85">
+          <p key={i} className="text-base leading-relaxed text-foreground/80">
             {p}
           </p>
         ))}

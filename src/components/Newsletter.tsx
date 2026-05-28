@@ -52,16 +52,16 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
 
   if (compact) {
     return (
-      <section className="rounded-xl border border-border bg-charcoal p-6 text-center">
-        <h2 className="mb-1.5 text-sm uppercase tracking-wider text-white/80">
+      <div className="rounded-2xl border-2 border-foreground bg-card p-6 text-center shadow-hard">
+        <h2 className="mb-1.5 text-sm font-bold uppercase tracking-wider text-foreground">
           Get synbio in 3 minutes
         </h2>
-        <p className="mb-4 text-xs text-white/50">
+        <p className="mb-4 text-xs text-muted-foreground">
           One idea, explained simply. Delivered to your inbox.
         </p>
 
         {status === "success" ? (
-          <p className="text-sm text-accent">You are on the list.</p>
+          <p className="text-sm font-bold text-accent">You are on the list!</p>
         ) : (
           <form
             onSubmit={handleSubmit}
@@ -77,11 +77,11 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 rounded-lg border border-white/10 bg-charcoal-light px-4 py-2 text-sm text-white placeholder:text-white/30 focus:border-accent focus:outline-none"
+              className="flex-1 rounded-xl border-2 border-foreground bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:shadow-hard-accent"
             />
             <button
               type="submit"
-              className="rounded-lg bg-accent px-5 py-2 text-sm text-white transition-colors hover:bg-accent-dark"
+              className="btn-candy whitespace-nowrap"
             >
               Subscribe
             </button>
@@ -89,27 +89,27 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
         )}
 
         {status === "error" && (
-          <p className="mt-2 text-xs text-red-400">Something went wrong.</p>
+          <p className="mt-2 text-xs font-medium text-secondary">Something went wrong.</p>
         )}
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="rounded-xl border border-border bg-charcoal p-8 text-center">
-      <h2 className="mb-2 text-sm uppercase tracking-wider text-white/80">
+    <div className="rounded-2xl border-2 border-foreground bg-card p-8 text-center shadow-hard-lg">
+      <h2 className="mb-2 text-sm font-bold uppercase tracking-wider text-foreground">
         Get synbio in 3 minutes
       </h2>
-      <p className="mb-6 text-xs text-white/50">
+      <p className="mb-6 text-xs text-muted-foreground">
         One idea per issue, explained simply. Short enough for a coffee break. No spam, ever.
       </p>
 
       {status === "success" ? (
         <div>
-          <p className="mb-2 text-sm text-accent">
-            You are on the list. Welcome aboard.
+          <p className="mb-2 text-sm font-bold text-accent">
+            You are on the list. Welcome aboard!
           </p>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-muted-foreground">
             Your first issue will arrive soon.
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-white/10 bg-charcoal-light px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-accent focus:outline-none"
+              className="w-full rounded-xl border-2 border-foreground bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:shadow-hard-accent"
             />
           </div>
 
@@ -141,7 +141,7 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
               id="newsletter-interest"
               value={interest}
               onChange={(e) => setInterest(e.target.value)}
-              className="w-full rounded-lg border border-white/10 bg-charcoal-light px-4 py-2.5 text-sm text-white/70 focus:border-accent focus:outline-none"
+              className="w-full rounded-xl border-2 border-foreground bg-background px-4 py-2.5 text-sm text-foreground focus:border-accent focus:outline-none focus:shadow-hard-accent"
             >
               <option value="">I am most interested in... (optional)</option>
               {INTEREST_OPTIONS.map((opt) => (
@@ -157,9 +157,9 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
               type="checkbox"
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
-              className="mt-1 h-3.5 w-3.5 shrink-0 rounded border-white/20 accent-accent"
+              className="mt-1 h-4 w-4 shrink-0 rounded border-2 border-foreground accent-accent"
             />
-            <span className="text-xs text-white/40 leading-relaxed">
+            <span className="text-xs text-muted-foreground leading-relaxed">
               I agree to receive emails about synbio learning content. You can
               unsubscribe anytime.
             </span>
@@ -167,7 +167,7 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-accent px-6 py-2.5 text-sm text-white transition-colors hover:bg-accent-dark"
+            className="btn-candy w-full justify-center"
           >
             Subscribe
           </button>
@@ -175,10 +175,10 @@ export default function Newsletter({ source = "home", compact = false }: Newslet
       )}
 
       {status === "error" && (
-        <p className="mt-3 text-xs text-red-400">
+        <p className="mt-3 text-xs font-medium text-secondary">
           Something went wrong. Please try again.
         </p>
       )}
-    </section>
+    </div>
   );
 }
