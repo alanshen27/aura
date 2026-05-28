@@ -1,26 +1,405 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f2ed;
+  --foreground: #1a1a1a;
+  --accent: #e05d73;
+  --accent-light: #fce4e8;
+  --accent-dark: #c0394f;
+  --surface: #ffffff;
+  --surface-alt: #ebe7e1;
+  --muted: #6b6760;
+  --border: #d6d0c8;
+  --progress: #e05d73;
+  --coming-soon: #b8b3ac;
+  --charcoal: #1e1e2e;
+  --charcoal-light: #2d2d40;
+  --pop-green: #34d399;
+  --pop-blue: #60a5fa;
+  --pop-yellow: #fbbf24;
+  --pop-purple: #a78bfa;
+  --pop-orange: #fb923c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-progress: var(--progress);
+  --color-coming-soon: var(--coming-soon);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-pop-green: var(--pop-green);
+  --color-pop-blue: var(--pop-blue);
+  --color-pop-yellow: var(--pop-yellow);
+  --color-pop-purple: var(--pop-purple);
+  --color-pop-orange: var(--pop-orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.8;
+}
+
+::selection {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Page-load animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 131, 142, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(196, 131, 142, 0.3); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.animate-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Staggered delays for lists */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* ─── Fun hover effects ─── */
+.hover-pop:hover {
+  transform: scale(1.05) rotate(-1deg);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Gradient text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--pop-purple) 40%, var(--pop-blue) 70%, var(--pop-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, var(--pop-orange) 0%, var(--accent) 50%, var(--pop-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Full-bleed section gradients ─── */
+.section-dark {
+  background: linear-gradient(180deg, var(--charcoal) 0%, #16162a 100%);
+}
+
+.section-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--pop-purple) 100%);
+}
+
+/* ─── Banner overlay gradient ─── */
+.banner-overlay {
+  position: relative;
+}
+
+.banner-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(224, 93, 115, 0.08) 0%, rgba(96, 165, 250, 0.06) 50%, rgba(52, 211, 153, 0.04) 100%);
+  pointer-events: none;
+}
+
+/* ─── Animated gradient background for hero ─── */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #1e1e2e, #2d1b3d, #1b2d3d, #1e2e1e, #1e1e2e);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* ─── Floating particle dots ─── */
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* ─── Scroll reveal (CSS-only with intersection observer in component) ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Wiki / Markdown prose ─── */
+.prose-wiki {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--foreground);
+}
+
+.prose-wiki h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.prose-wiki h2 {
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent-light);
+  color: var(--foreground);
+}
+
+.prose-wiki h3 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-dark);
+}
+
+.prose-wiki p {
+  margin-bottom: 1.2rem;
+}
+
+.prose-wiki a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.prose-wiki a:hover {
+  color: var(--accent-dark);
+}
+
+.prose-wiki ul,
+.prose-wiki ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.prose-wiki li {
+  margin-bottom: 0.4rem;
+}
+
+.prose-wiki blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--foreground);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.prose-wiki hr {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 2rem 0;
+}
+
+.prose-wiki table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+}
+
+.prose-wiki th {
+  background: var(--surface);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+
+.prose-wiki td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose-wiki code {
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-family: var(--font-mono);
+}
+
+.prose-wiki pre {
+  background: var(--charcoal);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose-wiki pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-wiki img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+}
+
+.prose-wiki strong {
+  color: var(--foreground);
+}
+
+/* ─── Rich text editor ─── */
+.tiptap-editor {
+  min-height: 200px;
+  padding: 1rem;
+  outline: none;
+}
+
+.tiptap-editor p {
+  margin-bottom: 0.8rem;
+}
+
+.tiptap-editor h1,
+.tiptap-editor h2,
+.tiptap-editor h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tiptap-editor p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted);
+  pointer-events: none;
+  height: 0;
 }

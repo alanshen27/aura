@@ -1,0 +1,9 @@
+export { default as DNAHelix } from "./DNAHelix";
+export { default as Plasmid } from "./Plasmid";
+export { default as Cell } from "./Cell";
+export { default as Flask } from "./Flask";
+export { default as Protein } from "./Protein";
+export { default as PetriDish } from "./PetriDish";
+export { default as GeneCircuit } from "./GeneCircuit";
+export { default as ModuleIllustration } from "./ModuleIllustration";
+export { default as AnimatedClipart } from "./AnimatedClipart";
