@@ -6,3 +6,4 @@ export { default as Protein } from "./Protein";
 export { default as PetriDish } from "./PetriDish";
 export { default as GeneCircuit } from "./GeneCircuit";
 export { default as ModuleIllustration } from "./ModuleIllustration";
+export { default as AnimatedClipart } from "./AnimatedClipart";

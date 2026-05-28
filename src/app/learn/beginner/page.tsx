@@ -4,6 +4,7 @@ import { getModulesByTrack } from "@/content/modules";
 import ModuleCard from "@/components/ModuleCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Cell, Plasmid, Protein, DNAHelix } from "@/components/illustrations";
+import AnimatedClipart from "@/components/illustrations/AnimatedClipart";
 
 export const metadata: Metadata = {
   title: "Beginner Track",
@@ -17,7 +18,8 @@ export default function BeginnerPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="banner-overlay bg-charcoal py-16 sm:py-20">
+      <section className="relative overflow-hidden animated-gradient-bg py-16 sm:py-20">
+        <AnimatedClipart variant="dark" density="sparse" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">
           <div className="mb-2 flex items-center gap-2 text-sm text-white/40">
             <Link href="/learn" className="transition-colors hover:text-accent">
@@ -60,16 +62,19 @@ export default function BeginnerPage() {
         </div>
       </section>
 
-      {/* Module list */}
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="space-y-4">
-          {trackModules.map((mod, i) => (
-            <ScrollReveal key={mod.slug} delay={i * 50}>
-              <ModuleCard module={mod} index={i} />
-            </ScrollReveal>
-          ))}
+      {/* Module list — dark background */}
+      <section className="relative overflow-hidden section-dark py-12">
+        <AnimatedClipart variant="dark" density="sparse" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <div className="space-y-4">
+            {trackModules.map((mod, i) => (
+              <ScrollReveal key={mod.slug} delay={i * 50}>
+                <ModuleCard module={mod} index={i} />
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

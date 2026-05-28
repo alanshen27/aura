@@ -3,6 +3,7 @@ import Link from "next/link";
 import { tracks } from "@/content/tracks";
 import { getModulesByTrack, modules } from "@/content/modules";
 import { DNAHelix, Flask, PetriDish, Cell, Plasmid } from "@/components/illustrations";
+import AnimatedClipart from "@/components/illustrations/AnimatedClipart";
 import Newsletter from "@/components/Newsletter";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -22,7 +23,8 @@ export default function LearnPage() {
   return (
     <div>
       {/* ─── Hero ─── */}
-      <section className="relative overflow-hidden banner-overlay bg-charcoal py-18 sm:py-24">
+      <section className="relative overflow-hidden animated-gradient-bg py-18 sm:py-24">
+        <AnimatedClipart variant="dark" density="sparse" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between">
             <div>
@@ -46,10 +48,11 @@ export default function LearnPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 py-14">
-        {/* ─── Section 1: Pick your track ─── */}
-        <ScrollReveal>
-          <section className="mb-16">
+      {/* ─── Section 1: Pick your track (dark bg) ─── */}
+      <section className="relative overflow-hidden bg-charcoal py-16">
+        <AnimatedClipart variant="dark" density="sparse" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal>
             <p className="mb-6 text-sm uppercase tracking-widest text-accent">
               pick your track
             </p>
@@ -64,18 +67,18 @@ export default function LearnPage() {
                   return (
                     <div
                       key={track.slug}
-                      className="rounded-2xl border border-border bg-surface/50 p-6 opacity-50"
+                      className="rounded-2xl border border-white/10 bg-white/5 p-6 opacity-50"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-alt text-lg">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-lg">
                           {track.icon}
                         </span>
                         <div>
-                          <h3 className="text-base text-foreground">{track.title}</h3>
-                          <span className="text-xs text-muted">coming soon</span>
+                          <h3 className="text-base text-white/70">{track.title}</h3>
+                          <span className="text-xs text-white/30">coming soon</span>
                         </div>
                       </div>
-                      <p className="mt-3 text-sm text-foreground/40">
+                      <p className="mt-3 text-sm text-white/30">
                         {track.description}
                       </p>
                     </div>
@@ -86,23 +89,23 @@ export default function LearnPage() {
                   <Link
                     key={track.slug}
                     href={`/learn/${track.slug}`}
-                    className="group block rounded-2xl border-2 border-accent/30 bg-surface p-6 transition-all duration-300 hover:border-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10"
+                    className="group block rounded-2xl border-2 border-accent/30 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent hover:-translate-y-1 hover:bg-white/10 hover:shadow-lg hover:shadow-accent/10"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-xl transition-transform group-hover:scale-110 group-hover:rotate-3">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-pop-purple text-xl transition-transform group-hover:scale-110 group-hover:rotate-3">
                           {track.icon}
                         </span>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="text-lg text-foreground transition-colors group-hover:text-accent-dark">
+                            <h3 className="text-lg text-white transition-colors group-hover:text-accent">
                               {track.title}
                             </h3>
                             <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs text-white">
                               featured
                             </span>
                           </div>
-                          <p className="text-sm text-foreground/55">
+                          <p className="text-sm text-white/50">
                             {track.description}
                           </p>
                         </div>
@@ -111,7 +114,7 @@ export default function LearnPage() {
                       <svg
                         width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                        className="mt-2 shrink-0 text-muted transition-all group-hover:translate-x-1 group-hover:text-accent"
+                        className="mt-2 shrink-0 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-accent"
                         aria-hidden="true"
                       >
                         <polyline points="9 18 15 12 9 6" />
@@ -119,7 +122,7 @@ export default function LearnPage() {
                     </div>
 
                     <div className="mt-4">
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-surface-alt">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                         <div
                           className="h-full rounded-full bg-gradient-to-r from-accent to-pop-green transition-all duration-500"
                           style={{
@@ -127,7 +130,7 @@ export default function LearnPage() {
                           }}
                         />
                       </div>
-                      <p className="mt-2 text-xs text-muted">
+                      <p className="mt-2 text-xs text-white/40">
                         {available} of {track.moduleCount} modules ready — let&apos;s go
                       </p>
                     </div>
@@ -135,12 +138,15 @@ export default function LearnPage() {
                 );
               })}
             </div>
-          </section>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ─── Section 2: How this site works ─── */}
-        <ScrollReveal>
-          <section className="mb-16">
+      {/* ─── Section 2: How this site works (dark gradient) ─── */}
+      <section className="relative overflow-hidden section-dark py-16">
+        <AnimatedClipart variant="dark" density="sparse" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal>
             <p className="mb-6 text-sm uppercase tracking-widest text-accent">
               how this works
             </p>
@@ -151,46 +157,48 @@ export default function LearnPage() {
                   icon: <Cell size={32} />,
                   title: "short modules",
                   desc: "5–10 minutes each. read one while you wait for your boba.",
-                  bg: "bg-charcoal",
+                  gradient: "from-accent to-pop-purple",
                 },
                 {
                   icon: <DNAHelix size={32} />,
                   title: "clear sections",
                   desc: "every module follows the same structure. you always know where you are.",
-                  bg: "bg-pop-blue",
+                  gradient: "from-pop-blue to-pop-purple",
                 },
                 {
                   icon: <Plasmid size={32} />,
                   title: "easy on the eyes",
                   desc: "calm colors, simple diagrams, lots of spacing. no headache-inducing walls of text.",
-                  bg: "bg-accent",
+                  gradient: "from-pop-green to-pop-blue",
                 },
                 {
                   icon: <Flask size={32} />,
                   title: "multiple formats",
                   desc: "prefer reading? quizzes? 3-minute email bursts? we got you.",
-                  bg: "bg-charcoal",
+                  gradient: "from-pop-orange to-accent",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={i} delay={i * 80}>
-                  <div className="rounded-2xl border border-border bg-surface p-5 transition-all hover:border-accent/30 hover:-translate-y-0.5">
-                    <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${item.bg}`}>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-accent/30 hover:-translate-y-0.5 hover:bg-white/10">
+                    <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient}`}>
                       {item.icon}
                     </div>
-                    <h3 className="mb-1 text-sm text-foreground">{item.title}</h3>
-                    <p className="text-xs text-foreground/50 leading-relaxed">
+                    <h3 className="mb-1 text-sm text-white">{item.title}</h3>
+                    <p className="text-xs text-white/45 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
                 </ScrollReveal>
               ))}
             </div>
-          </section>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ─── Section 3: Featured modules ─── */}
-        <ScrollReveal>
-          <section className="mb-16">
+      {/* ─── Section 3: Featured modules (charcoal) ─── */}
+      <section className="relative overflow-hidden bg-charcoal py-16">
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal>
             <p className="mb-6 text-sm uppercase tracking-widest text-accent">
               start here
             </p>
@@ -198,50 +206,53 @@ export default function LearnPage() {
             <div className="grid gap-4 sm:grid-cols-3">
               {featuredModules.map((mod, i) => {
                 if (!mod) return null;
-                const colors = ["border-accent/40", "border-pop-green/40", "border-pop-blue/40"];
+                const colors = ["border-accent/30", "border-pop-green/30", "border-pop-blue/30"];
                 const bgs = ["bg-accent", "bg-pop-green", "bg-pop-blue"];
                 return (
                   <ScrollReveal key={mod.slug} delay={i * 100}>
                     <Link
                       href={`/learn/beginner/${mod.slug}`}
-                      className={`group block rounded-2xl border-2 ${colors[i]} bg-surface p-5 transition-all hover:-translate-y-1 hover:shadow-md`}
+                      className={`group block rounded-2xl border-2 ${colors[i]} bg-white/5 p-5 backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-white/10 hover:shadow-md`}
                     >
                       <span className={`mb-3 inline-block rounded-full ${bgs[i]} px-2.5 py-0.5 text-xs text-white`}>
                         {mod.level}
                       </span>
-                      <h3 className="mb-1.5 text-sm text-foreground transition-colors group-hover:text-accent-dark">
+                      <h3 className="mb-1.5 text-sm text-white transition-colors group-hover:text-accent">
                         {mod.title}
                       </h3>
-                      <p className="mb-3 text-xs text-foreground/50 leading-relaxed">
+                      <p className="mb-3 text-xs text-white/45 leading-relaxed">
                         {mod.description}
                       </p>
-                      <p className="text-xs text-muted">{mod.minutes} min read</p>
+                      <p className="text-xs text-white/30">{mod.minutes} min read</p>
                     </Link>
                   </ScrollReveal>
                 );
               })}
             </div>
-          </section>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ─── Section 4: Newsletter ─── */}
-        <ScrollReveal>
-          <section>
-            <p className="mb-6 text-sm uppercase tracking-widest text-accent">
+      {/* ─── Section 4: Newsletter (gradient accent) ─── */}
+      <section className="relative overflow-hidden section-accent py-16">
+        <AnimatedClipart variant="dark" density="sparse" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <ScrollReveal>
+            <p className="mb-6 text-sm uppercase tracking-widest text-white/60">
               busy mode
             </p>
             <Newsletter source="learn" />
-            <p className="mt-4 text-center text-xs text-muted">
+            <p className="mt-4 text-center text-xs text-white/40">
               <Link
                 href="/newsletter"
-                className="transition-colors hover:text-accent"
+                className="transition-colors hover:text-white"
               >
                 browse past issues →
               </Link>
             </p>
-          </section>
-        </ScrollReveal>
-      </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </div>
   );
 }

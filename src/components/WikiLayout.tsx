@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import AnimatedClipart from "@/components/illustrations/AnimatedClipart";
 
 interface WikiLayoutProps {
   title: string;
@@ -21,7 +22,8 @@ export default function WikiLayout({
   return (
     <>
       {/* Header */}
-      <section className="banner-overlay bg-charcoal py-14 sm:py-20">
+      <section className="relative overflow-hidden animated-gradient-bg py-14 sm:py-20">
+        <AnimatedClipart variant="dark" density="sparse" />
         <div className="relative z-10 mx-auto max-w-5xl px-6">
           {/* Breadcrumbs */}
           <div className="mb-3 flex items-center gap-2 text-sm text-white/40">
