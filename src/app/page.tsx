@@ -76,21 +76,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── WHAT IS THIS: Dark storytelling section ─── */}
-      <section className="relative overflow-hidden section-dark py-24">
-        <AnimatedClipart variant="dark" density="sparse" />
+      {/* ─── WHAT IS THIS: Light storytelling section ─── */}
+      <section className="relative overflow-hidden py-24">
+        <AnimatedClipart variant="light" density="sparse" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">
           <ScrollReveal>
             <div className="mb-16 text-center">
               <p className="mb-4 text-sm uppercase tracking-[0.2em] text-accent font-medium">
                 for the curious
               </p>
-              <h2 className="mb-6 text-4xl tracking-tight text-white sm:text-5xl">
+              <h2 className="mb-6 text-4xl tracking-tight text-foreground sm:text-5xl">
                 synbio is like <span className="text-accent">coding</span>,
                 <br />
                 but for <span className="text-pop-green">living cells</span>.
               </h2>
-              <p className="mx-auto max-w-lg text-base text-white/50 leading-relaxed">
+              <p className="mx-auto max-w-lg text-base text-foreground/50 leading-relaxed">
                 scientists design DNA instructions, put them into tiny organisms,
                 and those organisms do new things — make medicine, sense pollution,
                 even glow in the dark.
@@ -98,15 +98,15 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          {/* Feature cards on dark bg */}
+          {/* Feature cards on light bg */}
           <div className="grid gap-6 sm:grid-cols-3">
             <ScrollReveal delay={0}>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-accent/40 hover:-translate-y-2 hover:bg-white/10">
+              <div className="group rounded-2xl border-2 border-accent/20 bg-surface p-8 transition-all hover:border-accent hover:-translate-y-2 hover:shadow-lg">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-pop-purple shadow-lg shadow-accent/20">
                   <DNAHelix size={32} />
                 </div>
-                <h3 className="mb-2 text-lg font-medium text-white">5-minute modules</h3>
-                <p className="text-sm text-white/45 leading-relaxed">
+                <h3 className="mb-2 text-lg font-medium text-foreground">5-minute modules</h3>
+                <p className="text-sm text-foreground/45 leading-relaxed">
                   each topic is one coffee break. short paragraphs, zero filler,
                   real-world examples that actually make sense.
                 </p>
@@ -114,12 +114,12 @@ export default function Home() {
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-pop-blue/40 hover:-translate-y-2 hover:bg-white/10">
+              <div className="group rounded-2xl border-2 border-pop-blue/20 bg-surface p-8 transition-all hover:border-pop-blue hover:-translate-y-2 hover:shadow-lg">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-pop-blue to-pop-green shadow-lg shadow-pop-blue/20">
                   <Flask size={32} />
                 </div>
-                <h3 className="mb-2 text-lg font-medium text-white">no textbook vibes</h3>
-                <p className="text-sm text-white/45 leading-relaxed">
+                <h3 className="mb-2 text-lg font-medium text-foreground">no textbook vibes</h3>
+                <p className="text-sm text-foreground/45 leading-relaxed">
                   we explain things with analogies, not jargon. CRISPR is
                   find-and-replace for DNA. plasmids are USB drives for bacteria.
                 </p>
@@ -127,12 +127,12 @@ export default function Home() {
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-pop-green/40 hover:-translate-y-2 hover:bg-white/10">
+              <div className="group rounded-2xl border-2 border-pop-green/20 bg-surface p-8 transition-all hover:border-pop-green hover:-translate-y-2 hover:shadow-lg">
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-pop-green to-pop-yellow shadow-lg shadow-pop-green/20">
                   <GeneCircuit size={32} />
                 </div>
-                <h3 className="mb-2 text-lg font-medium text-white">built by students</h3>
-                <p className="text-sm text-white/45 leading-relaxed">
+                <h3 className="mb-2 text-lg font-medium text-foreground">built by students</h3>
+                <p className="text-sm text-foreground/45 leading-relaxed">
                   this started as an iGEM project. we wanted to make synbio
                   accessible — not gatekept behind university courses.
                 </p>
@@ -142,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── OUR PROJECT: Mastitis detection teaser ─── */}
+      {/* ─── OUR PROJECT: Dark banner ─── */}
       <section className="relative overflow-hidden bg-charcoal py-24">
         <AnimatedClipart variant="dark" density="normal" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -190,23 +190,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── BIG NUMBERS: Dark section with animated clipart ─── */}
-      <section className="relative overflow-hidden section-dark py-24">
-        <AnimatedClipart variant="dark" density="sparse" />
-        {/* Extra glowing orbs */}
-        <div className="absolute top-1/4 left-1/3 h-48 w-48 rounded-full bg-pop-blue/10 blur-[80px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-40 w-40 rounded-full bg-pop-green/10 blur-[60px]" />
-
+      {/* ─── BIG NUMBERS: Light section ─── */}
+      <section className="relative overflow-hidden banner-overlay py-24">
+        <AnimatedClipart variant="light" density="sparse" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">
           <ScrollReveal>
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm uppercase tracking-[0.2em] text-pop-blue font-medium">
                 the bigger picture
               </p>
-              <h2 className="mb-4 text-3xl text-white sm:text-4xl">
+              <h2 className="mb-4 text-3xl text-foreground sm:text-4xl">
                 why does this stuff matter?
               </h2>
-              <p className="text-base text-white/35">
+              <p className="text-base text-foreground/40">
                 spoiler: it is already all around you
               </p>
             </div>
@@ -214,30 +210,30 @@ export default function Home() {
 
           <div className="grid gap-6 sm:grid-cols-3">
             <ScrollReveal delay={0}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all hover:border-accent/40 hover:-translate-y-2 hover:bg-white/10">
-                <Protein size={56} className="mx-auto mb-4 opacity-80" />
+              <div className="rounded-2xl border-2 border-accent/20 bg-surface p-8 text-center transition-all hover:border-accent hover:-translate-y-2 hover:shadow-lg">
+                <Protein size={56} className="mx-auto mb-4" />
                 <p className="mb-2 text-4xl font-medium text-accent">$45B</p>
-                <p className="text-sm text-white/40">
+                <p className="text-sm text-foreground/45">
                   global synbio market by 2026
                 </p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all hover:border-pop-green/40 hover:-translate-y-2 hover:bg-white/10">
-                <PetriDish size={56} className="mx-auto mb-4 opacity-80" />
+              <div className="rounded-2xl border-2 border-pop-green/20 bg-surface p-8 text-center transition-all hover:border-pop-green hover:-translate-y-2 hover:shadow-lg">
+                <PetriDish size={56} className="mx-auto mb-4" />
                 <p className="mb-2 text-4xl font-medium text-pop-green">400M+</p>
-                <p className="text-sm text-white/40">
+                <p className="text-sm text-foreground/45">
                   people use engineered insulin daily
                 </p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm transition-all hover:border-pop-blue/40 hover:-translate-y-2 hover:bg-white/10">
-                <Cell size={56} className="mx-auto mb-4 opacity-80" />
+              <div className="rounded-2xl border-2 border-pop-blue/20 bg-surface p-8 text-center transition-all hover:border-pop-blue hover:-translate-y-2 hover:shadow-lg">
+                <Cell size={56} className="mx-auto mb-4" />
                 <p className="mb-2 text-4xl font-medium text-pop-blue">6,000+</p>
-                <p className="text-sm text-white/40">
+                <p className="text-sm text-foreground/45">
                   iGEM teams worldwide since 2003
                 </p>
               </div>
@@ -246,7 +242,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── WHAT YOU'LL LEARN: Dark module grid ─── */}
+      {/* ─── WHAT YOU'LL LEARN: Dark module grid (user requested dark here) ─── */}
       <section className="relative overflow-hidden bg-charcoal py-24">
         <AnimatedClipart variant="dark" density="normal" />
         <div className="relative z-10 mx-auto max-w-6xl px-6">

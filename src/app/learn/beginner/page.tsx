@@ -62,19 +62,16 @@ export default function BeginnerPage() {
         </div>
       </section>
 
-      {/* Module list — dark background */}
-      <section className="relative overflow-hidden section-dark py-12">
-        <AnimatedClipart variant="dark" density="sparse" />
-        <div className="relative z-10 mx-auto max-w-6xl px-6">
-          <div className="space-y-4">
-            {trackModules.map((mod, i) => (
-              <ScrollReveal key={mod.slug} delay={i * 50}>
-                <ModuleCard module={mod} index={i} />
-              </ScrollReveal>
-            ))}
-          </div>
+      {/* Module list */}
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="space-y-4">
+          {trackModules.map((mod, i) => (
+            <ScrollReveal key={mod.slug} delay={i * 50}>
+              <ModuleCard module={mod} index={i} />
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }

@@ -25,18 +25,18 @@ export default function ModuleCard({ module, index }: ModuleCardProps) {
 
   if (module.comingSoon) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-5 opacity-40">
+      <div className="rounded-2xl border border-border bg-surface/50 p-5 opacity-40">
         <div className="flex items-center gap-4">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-sm text-white/40">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-alt text-sm text-muted">
             {String(index + 1).padStart(2, "0")}
           </span>
           <div>
-            <h3 className="text-sm text-white/50">{module.title}</h3>
-            <p className="text-xs text-white/30">{module.description}</p>
+            <h3 className="text-sm text-muted">{module.title}</h3>
+            <p className="text-xs text-muted/60">{module.description}</p>
           </div>
         </div>
         <div className="mt-3 ml-14">
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/30">
+          <span className="rounded-full bg-surface-alt px-3 py-1 text-xs text-muted">
             coming soon
           </span>
         </div>
@@ -47,7 +47,7 @@ export default function ModuleCard({ module, index }: ModuleCardProps) {
   return (
     <Link
       href={`/learn/beginner/${module.slug}`}
-      className="group block rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:bg-white/10 hover:shadow-lg hover:shadow-accent/10"
+      className="group block rounded-2xl border border-border bg-surface p-5 transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
@@ -55,17 +55,17 @@ export default function ModuleCard({ module, index }: ModuleCardProps) {
             {String(index + 1).padStart(2, "0")}
           </span>
           <div>
-            <h3 className="mb-1 text-sm text-white transition-colors group-hover:text-accent">
+            <h3 className="mb-1 text-sm text-foreground transition-colors group-hover:text-accent-dark">
               {module.title}
             </h3>
-            <p className="mb-3 text-xs text-white/45 leading-relaxed">
+            <p className="mb-3 text-xs text-foreground/50 leading-relaxed">
               {module.description}
             </p>
             <div className="flex items-center gap-3">
-              <span className="rounded-full bg-accent/20 px-2.5 py-0.5 text-xs text-accent">
+              <span className="rounded-full bg-accent-light px-2.5 py-0.5 text-xs text-accent-dark">
                 {module.level}
               </span>
-              <span className="text-xs text-white/40">{module.minutes} min</span>
+              <span className="text-xs text-muted">{module.minutes} min</span>
             </div>
           </div>
         </div>
