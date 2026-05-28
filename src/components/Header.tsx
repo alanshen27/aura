@@ -90,7 +90,7 @@ function DropdownItem({ item }: { item: NavDropdown }) {
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-2 min-w-[200px] rounded-2xl border-2 border-foreground bg-card p-2 shadow-hard">
+        <div className="absolute left-0 top-full z-[100] mt-2 min-w-[200px] rounded-2xl border-2 border-foreground bg-card p-2 shadow-hard">
           {item.items.map((sub) => (
             <Link
               key={sub.href}
@@ -111,7 +111,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-foreground bg-background/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
